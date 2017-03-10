@@ -15,6 +15,7 @@ public class Controller : MonoBehaviour {
     private float highHearDistance = 70;
     public GameObject flashlight;
 
+    public String prompt = "E to Open";
     // Use this for initialization
     void Start () {
 
@@ -31,7 +32,11 @@ public class Controller : MonoBehaviour {
         camera.localPosition = new Vector3(0, 1, .2f);
         currentSpeed = movementSpeed;
         
-	}
+        
+
+
+    }
+
 
 
 
@@ -39,7 +44,7 @@ public class Controller : MonoBehaviour {
     void Update() {
 
 
-        
+        isLookingAtDoor();
         
         //w
         if (Input.GetKey(KeyCode.W))
@@ -136,9 +141,24 @@ public class Controller : MonoBehaviour {
         print("Health Added");
     }
 
+    public void isLookingAtDoor()
+    {
+        if (Physics.Raycast(transform.position, Camera.main.transform.forward, 2))
+        {
+            print("Something in front!");
+        }
+           
+    }
+    void onGUI()
+    {
+        prompt = (GUI.TextField(new Rect(10, 10, 15, 15), prompt));
+    }
+
+    }
 
 
 
-}
+
+
 
 
