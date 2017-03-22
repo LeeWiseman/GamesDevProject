@@ -143,16 +143,15 @@ public class Controller : MonoBehaviour {
 
     public void isLookingAtDoor()
     {
+
+        float distToDoor = Vector3.Distance(transform.position, );
         if (Physics.Raycast(transform.position, Camera.main.transform.forward, 2))
         {
             print("Something in front!");
         }
-           
+       
     }
-    void onGUI()
-    {
-        prompt = (GUI.TextField(new Rect(10, 10, 15, 15), prompt));
-    }
+ 
 
     }
 
