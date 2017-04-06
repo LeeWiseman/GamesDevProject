@@ -9,7 +9,7 @@ public class Controller : MonoBehaviour {
     public int noise = 0;
     private float rotationSpeed = 360;
     private int jumpForce = 300, downforce = 300;
-
+    
     private float minHearDistance=7;
     private float middleHearDistance=35;
     private float highHearDistance = 70;
@@ -44,8 +44,10 @@ public class Controller : MonoBehaviour {
     void Update() {
 
 
-        isLookingAtDoor();
-        
+        lookingAtDoor();
+
+        float distToDoor = Vector3.Distance(transform.position, door);
+
         //w
         if (Input.GetKey(KeyCode.W))
         {
@@ -136,16 +138,19 @@ public class Controller : MonoBehaviour {
         else return false;
     }
 
+
+
     internal void AddHealth(int v)
     {
         print("Health Added");
     }
 
-    public void isLookingAtDoor()
+    public void lookingAtDoor()
     {
-
-        float distToDoor = Vector3.Distance(transform.position, );
-        if (Physics.Raycast(transform.position, Camera.main.transform.forward, 2))
+        
+        
+        
+        if (Physics.Raycast(transform.position, Camera.main.transform.forward, 3))
         {
             print("Something in front!");
         }
