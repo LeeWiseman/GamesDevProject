@@ -2,37 +2,47 @@
 using System.Collections;
 using System;
 
-public class Controller : MonoBehaviour {
+public class Controller : MonoBehaviour
+{
 
     //Vector3 movement;
     float currentSpeed, movementSpeed = 3, sprintSpeed = 6, crouchSpeed = 1;
     public int noise = 0;
     private float rotationSpeed = 360;
     private int jumpForce = 300, downforce = 300;
-    
-    private float minHearDistance=7;
-    private float middleHearDistance=35;
+
+    private float minHearDistance = 7;
+    private float middleHearDistance = 35;
     private float highHearDistance = 70;
     public GameObject flashlight;
+    public Texture2D crosshairImage;
 
-    public String prompt = "E to Open";
+
+    public String prompt = "E to Pick Up";
+    
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
 
-      transform.localScale = new Vector3(1, 2, 1);
-      transform.localPosition = new Vector3(13, 2, -1);
-      
-     
+        transform.localScale = new Vector3(1, 2, 1);
+        transform.localPosition = new Vector3(0, 0, 0);
+        transform.localRotation = new Quaternion(0, 0, 0, 0);
+
+
 
         var camera = Camera.main.transform;
-        
-        camera.parent =  transform;
-        
-        camera.localPosition = new Vector3(0, 1, .2f);
+
+        camera.parent = transform;
+
+        camera.localPosition = new Vector3(0, 0.5f, 0);
+        camera.localRotation = new Quaternion(0, 0, 0, 0);
         currentSpeed = movementSpeed;
+
+
         
-        
+
 
 
     }
@@ -41,17 +51,18 @@ public class Controller : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
 
 
         lookingAtDoor();
 
-        float distToDoor = Vector3.Distance(transform.position, door);
+
 
         //w
         if (Input.GetKey(KeyCode.W))
         {
-            
+
             transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
             noise = 1;
         }
@@ -87,7 +98,7 @@ public class Controller : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             currentSpeed = movementSpeed;
-            
+
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -99,7 +110,7 @@ public class Controller : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             currentSpeed = movementSpeed;
-            
+
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -147,18 +158,42 @@ public class Controller : MonoBehaviour {
 
     public void lookingAtDoor()
     {
+        Vector3 centre = new Vector3(Screen.height / 2, Screen.width / 2);
+        RaycastHit info;
+        Ray ray =  new Ray(this.transform.position, Camera.main.transform.forward);// Camera.main.ScreenPointToRay(centre);
         
-        
-        
-        if (Physics.Raycast(transform.position, Camera.main.transform.forward, 3))
+        if (Physics.Raycast(ray, out info))
         {
-            print("Something in front!");
+            print(info.collider.gameObject.name);
+            if (info.collider.gameObject.name == "Cube")
+            {
+                
+                 if(Input.GetKey(KeyCode.E))
+                Destroy (info.collider.gameObject);
+                
+            }
         }
-       
-    }
- 
+   }
+   
+        public void OnGUI() {
 
+        float xMin = (Screen.width / 2) - (crosshairImage.width/2);
+        float yMin = (Screen.height / 2) - (crosshairImage.height/2);
+        GUI.DrawTexture(new Rect(xMin, yMin, crosshairImage.width, crosshairImage.height), crosshairImage);
+        // GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), prompt);
+        GUI.Label(new Rect(0,0, 500f, 500f), "Health 100");
     }
+                
+
+ }
+
+
+
+
+    
+   
+
+
 
 
 
