@@ -470,9 +470,51 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b20207e5810eb2842b47790f361cb5ae, type: 2}
+    - target: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3, type: 2}
+      propertyPath: m_Name
+      value: DoorEnd
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efa94f71ea37b4042a699570decbade3, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &168463240 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3,
+    type: 2}
+  m_PrefabInternal: {fileID: 129073918}
+--- !u!64 &168463244
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 168463240}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: b85f94bfd82092546a78c0596ee44fa4, type: 3}
+--- !u!1 &180884311 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1426375466}
+--- !u!64 &180884315
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 180884311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: b85f94bfd82092546a78c0596ee44fa4, type: 3}
 --- !u!1001 &357998490
 Prefab:
   m_ObjectHideFlags: 0
@@ -563,6 +605,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b20207e5810eb2842b47790f361cb5ae, type: 2}
+    - target: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3, type: 2}
+      propertyPath: m_Name
+      value: DoorEnd
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efa94f71ea37b4042a699570decbade3, type: 2}
   m_IsPrefabParent: 0
@@ -1198,6 +1244,25 @@ Transform:
   m_PrefabParentObject: {fileID: 4424403521290316, guid: efa94f71ea37b4042a699570decbade3,
     type: 2}
   m_PrefabInternal: {fileID: 129073918}
+--- !u!1 &707184894 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3,
+    type: 2}
+  m_PrefabInternal: {fileID: 732272925}
+--- !u!64 &707184898
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 707184894}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: b85f94bfd82092546a78c0596ee44fa4, type: 3}
 --- !u!1001 &732272925
 Prefab:
   m_ObjectHideFlags: 0
@@ -1240,6 +1305,10 @@ Prefab:
     - target: {fileID: 1334754462507696, guid: efa94f71ea37b4042a699570decbade3, type: 2}
       propertyPath: m_Name
       value: DoorLeftPath
+      objectReference: {fileID: 0}
+    - target: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3, type: 2}
+      propertyPath: m_Name
+      value: DoorL
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efa94f71ea37b4042a699570decbade3, type: 2}
@@ -1632,6 +1701,10 @@ Prefab:
       propertyPath: m_Name
       value: DoorStart
       objectReference: {fileID: 0}
+    - target: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3, type: 2}
+      propertyPath: m_Name
+      value: DoorS
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efa94f71ea37b4042a699570decbade3, type: 2}
   m_IsPrefabParent: 0
@@ -1727,6 +1800,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1105662822 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3,
+    type: 2}
+  m_PrefabInternal: {fileID: 971430731}
+--- !u!64 &1105662826
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1105662822}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: b85f94bfd82092546a78c0596ee44fa4, type: 3}
 --- !u!1 &1126746289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,6 +1961,10 @@ Prefab:
       propertyPath: door
       value: 
       objectReference: {fileID: 1701365253}
+    - target: {fileID: 11415338, guid: 12dc53daff85f374e823c116424afa86, type: 2}
+      propertyPath: crosshairImage
+      value: 
+      objectReference: {fileID: 2800000, guid: e28ed22cfc002db4f8d1b2fd3b5766c4, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12dc53daff85f374e823c116424afa86, type: 2}
   m_IsPrefabParent: 0
@@ -2742,6 +2838,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b20207e5810eb2842b47790f361cb5ae, type: 2}
+    - target: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3, type: 2}
+      propertyPath: m_Name
+      value: DoorR
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efa94f71ea37b4042a699570decbade3, type: 2}
   m_IsPrefabParent: 0
@@ -3620,3 +3720,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &2031839584 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3,
+    type: 2}
+  m_PrefabInternal: {fileID: 357998490}
+--- !u!64 &2031839588
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2031839584}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: b85f94bfd82092546a78c0596ee44fa4, type: 3}

@@ -16,8 +16,10 @@ public class Controller : MonoBehaviour
     private float highHearDistance = 70;
     public GameObject flashlight;
     public Texture2D crosshairImage;
-
-
+    public Boolean lookingDoor = false;
+    public Boolean lookingCube = false;
+    public Boolean locked = false;
+    public Boolean takenCube = false;
     public String prompt = "E to Pick Up";
     
 
@@ -36,7 +38,7 @@ public class Controller : MonoBehaviour
 
         camera.parent = transform;
 
-        camera.localPosition = new Vector3(0, 0.5f, 0);
+        camera.localPosition = new Vector3(0, 1f, 0);
         camera.localRotation = new Quaternion(0, 0, 0, 0);
         currentSpeed = movementSpeed;
 
@@ -56,6 +58,7 @@ public class Controller : MonoBehaviour
 
 
         lookingAtDoor();
+        
 
 
 
@@ -105,6 +108,7 @@ public class Controller : MonoBehaviour
         {
             currentSpeed = crouchSpeed;
             noise = 0;
+            
         }
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
@@ -160,17 +164,58 @@ public class Controller : MonoBehaviour
     {
         Vector3 centre = new Vector3(Screen.height / 2, Screen.width / 2);
         RaycastHit info;
-        Ray ray =  new Ray(this.transform.position, Camera.main.transform.forward);// Camera.main.ScreenPointToRay(centre);
-        
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward); //  new Ray(this.transform.position, Camera.main.transform.forward);//Camera.main.ScreenPointToRay(centre);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward);
+
+     
         if (Physics.Raycast(ray, out info))
         {
             print(info.collider.gameObject.name);
             if (info.collider.gameObject.name == "Cube")
             {
-                
+                lookingCube = true;
                  if(Input.GetKey(KeyCode.E))
                 Destroy (info.collider.gameObject);
+                takenCube = true;
                 
+            }
+            if (info.collider.gameObject.name != "Cube")
+            {
+                lookingCube = false;
+                
+
+            }
+            if (info.collider.gameObject.name == "DoorS")
+            {
+
+                lookingDoor = true;
+                if (Input.GetKey(KeyCode.E))
+                    locked = true;
+
+            }
+            if (info.collider.gameObject.name == "DoorR")
+            {
+
+                lookingDoor = true;
+                if (Input.GetKey(KeyCode.E))
+                    locked = true;
+
+            }
+            if (info.collider.gameObject.name == "DoorL")
+            {
+
+                lookingDoor = true;
+                if (Input.GetKey(KeyCode.E))
+                    locked = true;
+
+            }
+            if (info.collider.gameObject.name == "DoorEnd")
+            {
+
+                lookingDoor = true;
+                if (Input.GetKey(KeyCode.E))
+                    locked = true;
+
             }
         }
    }
@@ -179,9 +224,23 @@ public class Controller : MonoBehaviour
 
         float xMin = (Screen.width / 2) - (crosshairImage.width/2);
         float yMin = (Screen.height / 2) - (crosshairImage.height/2);
-        GUI.DrawTexture(new Rect(xMin, yMin, crosshairImage.width, crosshairImage.height), crosshairImage);
+        //GUI.DrawTexture(new Rect(Screen.width/2.3f, Screen.height/3f, crosshairImage.width/2, crosshairImage.height/2), crosshairImage);
         // GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), prompt);
         GUI.Label(new Rect(0,0, 500f, 500f), "Health 100");
+
+        if(lookingDoor == true)
+        {
+            GUI.Label(new Rect(Screen.width/2, Screen.height/2, 2000f, 2000f), "E To Open");
+        }
+        if(locked == true)
+        {
+            
+            GUI.Label(new Rect(Screen.width / 2, Screen.height / 3, 2000f, 2000f), "Locked!");
+        }
+        if(lookingCube == true)
+        {
+            GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 2000f, 2000f), "E To Take");
+        }
     }
                 
 
