@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
@@ -20,19 +21,32 @@ public class Controller : MonoBehaviour
     public Boolean lookingCube = false;
     public Boolean locked = false;
     public Boolean takenCube = false;
+    public Boolean escape = false;
     public String prompt = "E to Pick Up";
     
 
     // Use this for initialization
     void Start()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
 
+       
+        if (sceneName == "MainScene")
+        {
+           
+            transform.localPosition = new Vector3(14, 2.5f, -0.6f);
+            transform.localRotation = new Quaternion(0, 0, 0, 0);
+        }
 
+        if (sceneName == "Room1")
+        {
+
+            transform.localPosition = new Vector3(2.2f, 2.5f, -0.6f);
+            transform.localRotation = new Quaternion(0, -180, 0, 0);
+                
+        }
         transform.localScale = new Vector3(1, 2, 1);
-        transform.localPosition = new Vector3(0, 0, 0);
-        transform.localRotation = new Quaternion(0, 0, 0, 0);
-
-
 
         var camera = Camera.main.transform;
 
@@ -40,7 +54,9 @@ public class Controller : MonoBehaviour
 
         camera.localPosition = new Vector3(0, 1f, 0);
         camera.localRotation = new Quaternion(0, 0, 0, 0);
-        currentSpeed = movementSpeed;
+
+
+            currentSpeed = movementSpeed;
 
 
         
@@ -56,9 +72,20 @@ public class Controller : MonoBehaviour
     void Update()
     {
 
-
+        lookingDoor = false;
+        lookingCube = false;
+        locked = false;
+    
         lookingAtDoor();
-        
+
+        if (Time.time > 3 & Time.time < 6)
+        {
+            escape = true;
+        }
+       else
+        {
+            escape = false;
+        }
 
 
 
@@ -168,23 +195,19 @@ public class Controller : MonoBehaviour
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward);
 
      
-        if (Physics.Raycast(ray, out info))
+        if (Physics.Raycast(ray, out info,3.5f))
         {
             print(info.collider.gameObject.name);
             if (info.collider.gameObject.name == "Cube")
             {
                 lookingCube = true;
-                 if(Input.GetKey(KeyCode.E))
-                Destroy (info.collider.gameObject);
-                takenCube = true;
-                
+                if (Input.GetKey(KeyCode.E))
+                {
+                    Destroy(info.collider.gameObject);
+                    takenCube = true;
+                }
             }
-            if (info.collider.gameObject.name != "Cube")
-            {
-                lookingCube = false;
-                
-
-            }
+         
             if (info.collider.gameObject.name == "DoorS")
             {
 
@@ -206,7 +229,7 @@ public class Controller : MonoBehaviour
 
                 lookingDoor = true;
                 if (Input.GetKey(KeyCode.E))
-                    locked = true;
+                    SceneManager.LoadScene("Room1", LoadSceneMode.Single);
 
             }
             if (info.collider.gameObject.name == "DoorEnd")
@@ -217,11 +240,19 @@ public class Controller : MonoBehaviour
                     locked = true;
 
             }
+            if (info.collider.gameObject.name == "DoorRoom")
+            {
+
+                lookingDoor = true;
+                if (Input.GetKey(KeyCode.E))
+                    SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+
+            }
         }
    }
    
         public void OnGUI() {
-
+        GUI.skin.label.fontSize = 12;
         float xMin = (Screen.width / 2) - (crosshairImage.width/2);
         float yMin = (Screen.height / 2) - (crosshairImage.height/2);
         //GUI.DrawTexture(new Rect(Screen.width/2.3f, Screen.height/3f, crosshairImage.width/2, crosshairImage.height/2), crosshairImage);
@@ -241,6 +272,12 @@ public class Controller : MonoBehaviour
         {
             GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 2000f, 2000f), "E To Take");
         }
+       /* if(escape == true)
+        {
+            GUI.skin.label.fontSize = 300;
+            GUI.skin.label.font = Resources.Load<Font>("Fonts/HELVETICA"); ;
+            GUI.Label(new Rect(0,0, 2000f, 2000f), "Escape");
+        }*/
     }
                 
 

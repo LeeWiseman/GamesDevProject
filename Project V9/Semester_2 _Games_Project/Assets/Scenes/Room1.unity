@@ -274,23 +274,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d640b596d4052c4394e3d63d441d464, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &551052972 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1334754462507696, guid: efa94f71ea37b4042a699570decbade3,
-    type: 2}
-  m_PrefabInternal: {fileID: 997877331}
---- !u!65 &551052976
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 551052972}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.9224386, y: 85.06054, z: 45.153393}
-  m_Center: {x: -2.9612274, y: 43.0822, z: -7.3023906}
 --- !u!1 &824818443
 GameObject:
   m_ObjectHideFlags: 0
@@ -3185,6 +3168,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3, type: 2}
+      propertyPath: m_Name
+      value: DoorRoom
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efa94f71ea37b4042a699570decbade3, type: 2}
   m_IsPrefabParent: 0
@@ -3246,6 +3233,88 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d640b596d4052c4394e3d63d441d464, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1215312351 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3,
+    type: 2}
+  m_PrefabInternal: {fileID: 997877331}
+--- !u!64 &1215312355
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1215312351}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: b85f94bfd82092546a78c0596ee44fa4, type: 3}
+--- !u!1 &1221660276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1221660278}
+  - component: {fileID: 1221660277}
+  m_Layer: 0
+  m_Name: Spotlight (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &1221660277
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1221660276}
+  m_Enabled: 1
+  serializedVersion: 7
+  m_Type: 0
+  m_Color: {r: 0.97794116, g: 0.7631115, b: 0.56806874, a: 1}
+  m_Intensity: 5.56
+  m_Range: 8.85
+  m_SpotAngle: 72.4
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 0.11
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &1221660278
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1221660276}
+  m_LocalRotation: {x: 0.6664307, y: 0.23636864, z: 0.23636864, w: 0.6664307}
+  m_LocalPosition: {x: 1.56, y: 8.11, z: -0.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 50.943, y: 90.00001, z: 90.00001}
 --- !u!1001 &1233135684
 Prefab:
   m_ObjectHideFlags: 0
