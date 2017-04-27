@@ -139,7 +139,7 @@ public class EnemyController : MonoBehaviour  {
 
     private bool ICanSeeYou()
     {
-        return Vector3.Distance(player.transform.position, transform.position) < 1.0;
+        return Vector3.Distance(player.transform.position, transform.position) < 2.5f;
     }
 
     private void chooseNextWaypoint()

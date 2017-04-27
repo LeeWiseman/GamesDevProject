@@ -11,7 +11,7 @@ public class Controller : MonoBehaviour
     public int noise = 0;
     private float rotationSpeed = 360;
     private int jumpForce = 300, downforce = 300;
-
+    private int health=100;
     private float minHearDistance = 7;
     private float middleHearDistance = 35;
     private float highHearDistance = 70;
@@ -23,6 +23,7 @@ public class Controller : MonoBehaviour
     public Boolean takenCube = false;
     public Boolean escape = false;
     public String prompt = "E to Pick Up";
+    EnemyController enemy;
     
 
     // Use this for initialization
@@ -30,8 +31,8 @@ public class Controller : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
+        enemy = FindObjectOfType<EnemyController>();
 
-       
         if (sceneName == "MainScene")
         {
            
@@ -45,6 +46,13 @@ public class Controller : MonoBehaviour
             transform.localPosition = new Vector3(2.2f, 2.5f, -0.6f);
             transform.localRotation = new Quaternion(0, -180, 0, 0);
                 
+        }
+        if (sceneName == "Room2")
+        {
+
+            transform.localPosition = new Vector3(18f, 2.5f, 27.2f);
+            transform.localRotation = new Quaternion(0, -88, 0, 0);
+
         }
         transform.localScale = new Vector3(1, 2, 1);
 
@@ -71,6 +79,16 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(Vector3.Distance(enemy.transform.position, transform.position) > .5)
+        {
+            takeDamage();
+        }
+
+        if (health >= 0)
+        {
+            die();
+        }
 
         lookingDoor = false;
         lookingCube = false;
@@ -163,6 +181,11 @@ public class Controller : MonoBehaviour
         transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime);
     }
 
+    public void takeDamage()
+    {
+        this.health = this.health - 50;
+    }
+
     internal bool canIhearYou(Vector3 position)
     {
         float dist = Vector3.Distance(position, transform.position);
@@ -185,6 +208,11 @@ public class Controller : MonoBehaviour
     internal void AddHealth(int v)
     {
         print("Health Added");
+    }
+
+    public void die()
+    {
+        SceneManager.LoadScene(SceneManager.GetSceneByName("MainScene"));
     }
 
     public void lookingAtDoor()
@@ -282,18 +310,3 @@ public class Controller : MonoBehaviour
                 
 
  }
-
-
-
-
-    
-   
-
-
-
-
-
-
-
-
-
