@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour  {
 
     enum NPCBehaviour { Patroling, Search, Attack}
     NPCBehaviour currentMode = NPCBehaviour.Patroling;
-    float currentSpeed, standStill = 0f, walkSpeed = 3.5f, sprintSpeed = 8;
+    float currentSpeed, standStill = 0f, walkSpeed = 3.5f, sprintSpeed = 10;
     NavMeshAgent agent;
     int patrolDestinationIndex = 1;
     Controller player;

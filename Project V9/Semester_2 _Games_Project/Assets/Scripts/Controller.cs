@@ -23,6 +23,9 @@ public class Controller : MonoBehaviour
     public Boolean takenCube = false;
     public Boolean escape = false;
     public String prompt = "E to Pick Up";
+
+    public float hitTime = 0; 
+    
     EnemyController enemy;
     
 
@@ -31,7 +34,7 @@ public class Controller : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
-        enemy = FindObjectOfType<EnemyController>();
+
 
         if (sceneName == "MainScene")
         {
@@ -80,16 +83,36 @@ public class Controller : MonoBehaviour
     void Update()
     {
 
-        if(Vector3.Distance(enemy.transform.position, transform.position) > .5)
+        hitTime += Time.deltaTime; //add time
+        
+        
+
+        if (health < 0)
         {
-            takeDamage();
+            health = 0;
         }
 
-        if (health >= 0)
+        if (!enemy)
         {
-            die();
-        }
+            enemy = FindObjectOfType<EnemyController>();
 
+            if (enemy)
+            print("found Enemy script");
+
+
+        }
+        else 
+            if  (hitTime > 2 && Vector3.Distance(enemy.transform.position, transform.position) < 2)
+            {
+                takeDamage();
+            }
+        
+        if (health <0)
+        {
+           die();
+            print("You Died");
+        }
+        
         lookingDoor = false;
         lookingCube = false;
         locked = false;
@@ -183,7 +206,13 @@ public class Controller : MonoBehaviour
 
     public void takeDamage()
     {
-        this.health = this.health - 50;
+        this.health = this.health - 30; 
+        hitTime = 0;
+        Rigidbody rb = new Rigidbody();
+        rb = this.GetComponent<Rigidbody>();
+        rb.AddForce(new Vector3(50,30,0),ForceMode.Impulse);
+        
+        
     }
 
     internal bool canIhearYou(Vector3 position)
@@ -208,13 +237,14 @@ public class Controller : MonoBehaviour
     internal void AddHealth(int v)
     {
         print("Health Added");
+        health += v;
     }
 
-    public void die()
-    {
-        SceneManager.LoadScene(SceneManager.GetSceneByName("MainScene"));
-    }
-
+     public void die()
+     {
+         SceneManager.LoadScene("MainScene");
+     }
+     
     public void lookingAtDoor()
     {
         Vector3 centre = new Vector3(Screen.height / 2, Screen.width / 2);
@@ -232,6 +262,7 @@ public class Controller : MonoBehaviour
                 if (Input.GetKey(KeyCode.E))
                 {
                     Destroy(info.collider.gameObject);
+                    AddHealth(25);
                     takenCube = true;
                 }
             }
@@ -284,8 +315,8 @@ public class Controller : MonoBehaviour
         float xMin = (Screen.width / 2) - (crosshairImage.width/2);
         float yMin = (Screen.height / 2) - (crosshairImage.height/2);
         //GUI.DrawTexture(new Rect(Screen.width/2.3f, Screen.height/3f, crosshairImage.width/2, crosshairImage.height/2), crosshairImage);
-        // GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), prompt);
-        GUI.Label(new Rect(0,0, 500f, 500f), "Health 100");
+        //GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 200f, 200f), prompt);
+        GUI.Label(new Rect(0,0, 500f, 500f), "Health "+health);
 
         if(lookingDoor == true)
         {
@@ -293,19 +324,19 @@ public class Controller : MonoBehaviour
         }
         if(locked == true)
         {
-            
             GUI.Label(new Rect(Screen.width / 2, Screen.height / 3, 2000f, 2000f), "Locked!");
         }
         if(lookingCube == true)
         {
             GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 2000f, 2000f), "E To Take");
         }
-       /* if(escape == true)
+        if(escape == true)
         {
             GUI.skin.label.fontSize = 300;
             GUI.skin.label.font = Resources.Load<Font>("Fonts/HELVETICA"); ;
             GUI.Label(new Rect(0,0, 2000f, 2000f), "Escape");
-        }*/
+        }
+       
     }
                 
 
