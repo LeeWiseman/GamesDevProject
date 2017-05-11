@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 824818444}
   - component: {fileID: 824818448}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -478,7 +478,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1655142940
+  randomSeed: 792398597
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3233,7 +3233,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1272394624213268, guid: efa94f71ea37b4042a699570decbade3, type: 2}
       propertyPath: m_Name
-      value: DoorRoom
+      value: DoorExitR
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334754462507696, guid: efa94f71ea37b4042a699570decbade3, type: 2}
+      propertyPath: m_Name
+      value: DoorExitR
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efa94f71ea37b4042a699570decbade3, type: 2}

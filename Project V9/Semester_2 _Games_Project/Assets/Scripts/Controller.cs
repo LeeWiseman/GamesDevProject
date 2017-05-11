@@ -21,6 +21,8 @@ public class Controller : MonoBehaviour
     public Boolean lookingCube = false;
     public Boolean locked = false;
     public Boolean takenCube = false;
+    public Boolean hasCube1 =true;
+    public Boolean hasCube2 =true;
     public Boolean escape = false;
     public String prompt = "E to Pick Up";
 
@@ -40,6 +42,13 @@ public class Controller : MonoBehaviour
         {
            
             transform.localPosition = new Vector3(14, 2.5f, -0.6f);
+            transform.localRotation = new Quaternion(0, 0, 0, 0);
+        }
+
+        if (sceneName == "EndRoom")
+        {
+
+            transform.localPosition = new Vector3(2, 0, -2);
             transform.localRotation = new Quaternion(0, 0, 0, 0);
         }
 
@@ -244,7 +253,7 @@ public class Controller : MonoBehaviour
      {
          SceneManager.LoadScene("MainScene");
      }
-     
+
     public void lookingAtDoor()
     {
         Vector3 centre = new Vector3(Screen.height / 2, Screen.width / 2);
@@ -252,11 +261,11 @@ public class Controller : MonoBehaviour
         Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward); //  new Ray(this.transform.position, Camera.main.transform.forward);//Camera.main.ScreenPointToRay(centre);
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward);
 
-     
-        if (Physics.Raycast(ray, out info,3.5f))
+
+        if (Physics.Raycast(ray, out info, 3.5f))
         {
             print(info.collider.gameObject.name);
-            if (info.collider.gameObject.name == "Cube")
+            if (info.collider.gameObject.name == "Cube1")
             {
                 lookingCube = true;
                 if (Input.GetKey(KeyCode.E))
@@ -264,9 +273,22 @@ public class Controller : MonoBehaviour
                     Destroy(info.collider.gameObject);
                     AddHealth(25);
                     takenCube = true;
+                    hasCube1 = true;
                 }
             }
-         
+
+            if (info.collider.gameObject.name == "Cube2")
+            {
+                lookingCube = true;
+                if (Input.GetKey(KeyCode.E))
+                {
+                    Destroy(info.collider.gameObject);
+                    AddHealth(25);
+                    takenCube = true;
+                    hasCube2 = true;
+                }
+            }
+
             if (info.collider.gameObject.name == "DoorS")
             {
 
@@ -280,7 +302,7 @@ public class Controller : MonoBehaviour
 
                 lookingDoor = true;
                 if (Input.GetKey(KeyCode.E))
-                    locked = true;
+                    SceneManager.LoadScene("Room2", LoadSceneMode.Single);
 
             }
             if (info.collider.gameObject.name == "DoorL")
@@ -291,24 +313,57 @@ public class Controller : MonoBehaviour
                     SceneManager.LoadScene("Room1", LoadSceneMode.Single);
 
             }
-            if (info.collider.gameObject.name == "DoorEnd")
+
+            if (info.collider.gameObject.name == "DoorExitL")
             {
-
-                lookingDoor = true;
+                lookingCube = true;
                 if (Input.GetKey(KeyCode.E))
-                    locked = true;
-
-            }
-            if (info.collider.gameObject.name == "DoorRoom")
-            {
-
-                lookingDoor = true;
-                if (Input.GetKey(KeyCode.E))
+                {
                     SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+                    transform.localPosition = new Vector3(-37, 2, 51);
+                }
+            }
 
+                if (info.collider.gameObject.name == "DoorExitR")
+                {
+                    lookingDoor = true;
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+                        transform.localPosition = new Vector3(14, 2.5f, -0.6f);
+                    }
+                }
+
+                if (info.collider.gameObject.name == "DoorEnd")
+                {
+
+                    lookingDoor = true;
+                if (Input.GetKey(KeyCode.E))
+                {
+                   
+                        SceneManager.LoadScene("EndRoom", LoadSceneMode.Single);
+                        if (Time.deltaTime > 4)
+                            Application.Quit();
+                   
+                       // print(hasCube1 + "  " + hasCube2);
+                        //locked = true;
+
+                    
+                }
+
+                }
+                if (info.collider.gameObject.name == "DoorRoom")
+                {
+
+                    lookingDoor = true;
+                    if (Input.GetKey(KeyCode.E))
+                        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+
+                }
             }
         }
-   }
+    
+   
    
         public void OnGUI() {
         GUI.skin.label.fontSize = 12;

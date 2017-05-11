@@ -9,3 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
   - enabled: 1
     path: Assets/Scenes/Room1.unity
+  - enabled: 1
+    path: Assets/Scenes/Room2.unity
+  - enabled: 1
+    path: Assets/Scenes/EndRoom.unity
